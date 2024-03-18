@@ -8,13 +8,14 @@ public class EquipeTest {
         // créer un objet equipe 1
         Equipe equipe1 = new Equipe();
         equipe1.setNom("fc Bercelone");
-        equipe1.setVille("Spain");
+        equipe1.setRank("3");
 
         // créer un objet equipe 2
         Equipe equipe2 = new Equipe();
         equipe2.setNom("Paris saint germin");
-        equipe2.setVille("Paris");
+        equipe2.setRank("1");
 
+        
         // ajouter les équipes à la BD
         EquipeDao equipeDao = new EquipeDao();
         equipeDao.ajouter(equipe1);
@@ -41,6 +42,18 @@ public class EquipeTest {
         System.out.println("Appel de la méthode listerTous après suppression :");
         for (Equipe equipe : equipeDao.listerTous())
             System.out.println(equipe.getCode() + " " + equipe.getNom());
+        
+        
+        Equipe equipeConsulter = equipeDao.consulter(new Equipe(), 13); 
+        //System.out.println("Equipe consultée : " + equipeConsulter.getCode() + " " + equipeConsulter.getNom());
+        if (equipeConsulter == null) {
+        	System.out.println("equipe not found");
+        }
+        else {
+            equipeDao.supprimer(equipeConsulter);
+
+        }
+        //equipeConsulter.setRank("10"); 
 
        
     }
